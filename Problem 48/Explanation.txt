@@ -1,0 +1,11 @@
+In this problem, we have to rotate an NxN square by 90 degrees clockwise in place. The way I approached this problem was by breaking down an NxN 
+square into a bunch of layers. Layers are explained in Figure 1. For example, a 4x4 square has 2 layers. A 3x3 square has 1 layer. An NxN square
+has N/2 layers (This is integer division, so a 5x5 square has 2 effective layers). For each layer, all the algorithm does is rotate by 90 degrees one piece
+at a time. Since we are rotating by 90 degrees, after 4 rotations we will come back to where we began. Each layer only has  N - 1 - currentRotation
+number of steps to complete, which will be highlighted in Figure 2. 
+
+Results:
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Rotate Image.
+Memory Usage: 8.8 MB, less than 100.00% of C++ online submissions for Rotate Image.
+
+First time I've ever done this well on a LeetCode challenge, but I'm sure I'll run into more walls next time!
