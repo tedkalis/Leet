@@ -1,0 +1,18 @@
+In this problem, we have to find the longest substring with no repeating characters. For example, "abcde" would give us an output of 5 since 
+the whole string has no repeating characters. However, "xyxyz" would give us an output of 3, since xyz at the end is the longest non-repeating
+substring. The approach I first thought of was brute force, where I looked at each substring starting at each index, which is shown in Figure 1. 
+However, this is very slow compared to other solutions. Eventually I realized that we can eliminate looking at a lot of possibilities by only
+looking at substrings of similar length to what we've already found. We can do this by "sliding our window" aka moving two pointers/iterators/indicies
+to indicate our current substring (Figure 1). This gives us an O(n) solution where we look at each letter at most twice; once when adding it to our substring
+and once if we eventually remove it from the beginning of our substring. I also decided to make sure I remember how to use post and pre increment
+operators so they're in the code. They just seem so efficient in terms of lines of code.
+
+Results:
+Runtime: 28 ms, faster than 40.33% of C++ online submissions for Longest Substring Without Repeating Characters.
+Memory Usage: 13.2 MB, less than 32.31% of C++ online submissions for Longest Substring Without Repeating Characters.
+
+Wow, I honestly thought this was a pretty decent solution but everyone else on LeetCode seems to be doing better on something. I decided to look
+at the discussion to see what people were doing and there are some really cool tricks that were done. For example, some people's solutions slide
+the window by more than 1 at a time because they know what each index contains, which is really smart. Some saved on memory by using the difference
+between start and end as the current Length instead of using a variable which is what I did. Next time hopefully we can apply these techniques or 
+try to save every byte that we can. 
