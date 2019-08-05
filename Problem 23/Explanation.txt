@@ -1,0 +1,27 @@
+Today's problem is our first hard one, merging K sorted lists. As you would expect, this is a harder version of the problem merging two sorted 
+lists. The algorithm for merging two sorted lists is to simply advance a pointer for each list, and check to see which number is smaller and 
+put that in the combined list first, as shown in Figure 1. However, it becomes more complicated when you have more than 2 lists to sort together.
+One's first thought would be to do the same approach as before but look through more than 2 lists for the smallest element. This would certainly work,
+but you would spend far too much time looking at each element (This approach is highlighted in Figure 2). Instead of looking at each list everytime
+you would want to insert a new element, which is an O(K) operation since there are K lists, we can instead use a priority queue to tell us what is 
+the smallest element of all the lists at their current pointer position. This is the approach I went for, and is illustrated in Figure 3. Priority 
+queues arrange elements through some sort of order that we specify in its constructor. We simply want the smallest element each time, so we tell 
+the priority queue to prioritize the smaller elements through our overloaded comparison operator. The priority queue allows us to specify the container
+it uses as well, so I ran the code with both a vector and a deque. 
+
+Underlying priority queue container is a vector results:
+Runtime: 28 ms, faster than 70.05% of C++ online submissions for Merge k Sorted Lists.
+Memory Usage: 11.1 MB, less than 71.10% of C++ online submissions for Merge k Sorted Lists.
+
+Underlying priority queue container is a deque results:
+Runtime: 36 ms, faster than 38.79% of C++ online submissions for Merge k Sorted Lists.
+Memory Usage: 11 MB, less than 75.88% of C++ online submissions for Merge k Sorted Lists.
+
+The vector container, in exchange for using .1 megabytes more memory, ran significantly faster than the deque container. Vectors tend to resize
+whenever they exceed their maximum capacity and copy over elements, whereas deques reshape their container since they are not contiguous in memory.
+Overall, the vector solution seems pretty decent. Looking at the fastest solutions in the discussion, they utilize the merge-sort approach but use
+more memory than the priority-queue solution. Again, the trade-off between memory and performance is shown. There is also a very interesting solution
+which is just repeated application of the merge two sorted list problem, turning K lists into K/2 lists, and K/2 lists into K/4 lists, so on and so 
+forth, until you end up with just 1 sorted list. With this type of solution, you can likely optimize even more using multi-threading, spawning a 
+thread to perform each individual merge. This would allow all merges from one level to the next to happen simultaneously, instead of happening one 
+by one. This would also likely take more memory, but it would be pretty fast!
