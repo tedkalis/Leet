@@ -1,0 +1,30 @@
+Today's problem is 3Sum, which asks us to find out all unique sets of 3 numbers that are equal to 0 when summed up. The first thought that comes to
+mind is a simple triple-nested loop, which will take O(N^3) time. Even though it is the simplest solution, it is by far the worst, especially 
+considering that duplicates would occur within that setup so they would have to be removed. A much better solution could be obtained if we could
+only set up the data how we'd like. An unsorted array is impossible to work with, but if we sort it, we can discover a simple way to find pairs of
+3 numbers. The std::sort takes O(NlogN) time to do. We then run a for loop through our vector but we stop at the size - 2 because we are looking
+for triplets, and if we stop at the end of the loop we wouldn't be able to find numbers after it. This approach is shown in Figure 1. From each index
+i, we create a start, which is i+1, and an end, which is just the size of the container - 1 because c++ containers start indexing at 0. Then, we 
+look at the sum of the numbers at positions i, start, and end and see if we get 0. If we get a number that is less than 0, we know our number is too
+small, so we advance the start position so it can be a larger number. If we get a number that is more than 0, our combined sum is too big, and we 
+decrement the end position instead. If we end up with a sum of 0, we can put it in our output vector and increment/decrement our start/end respectively.
+In order to avoid duplicates, we may have to increment and decrement our start and end multiple times. If we perform these changes in start and end
+and the number has remained the same, then we can simply increment/decrement again until we get a new number. This will result in no duplicates being
+in the output set. 
+
+Results:
+Runtime: 92 ms, faster than 93.39% of C++ online submissions for 3Sum.
+Memory Usage: 14.6 MB, less than 98.92% of C++ online submissions for 3Sum.
+
+This seems like a pretty good solution, memory is definitely looking good. A good takeaway would probably be that sorting a dataset can help 
+tremendously, especially if the alternate is a horribly slow solution. This solution isn't bad in terms of run-time either. At worst, the looking 
+for triplets will take O(N^2) time which is definitely better than the brute force solution. 
+
+While creating Figure 1 I thought of a possible way to improve runtime. We could break whenever our vector at index i is greater than 0, since that
+means the only triplets left to check are all positive numbers, which cannot possibly sum to 0. Applying that gives us these results:
+
+Results:
+Runtime: 80 ms, faster than 99.89% of C++ online submissions for 3Sum.
+Memory Usage: 14.7 MB, less than 93.10% of C++ online submissions for 3Sum.
+
+Nice!! Runtime got significantly faster! Not sure how this affected memory usage but .1 megabytes might be within the margin of error. 
