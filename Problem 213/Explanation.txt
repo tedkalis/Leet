@@ -1,0 +1,20 @@
+Today's question is of a different topic than the previous ones, Dynamic Programming. I thought I would do one of these because they're harder for
+me than other problems. This one involves a robber stealing from houses. However, if the robber steals from two houses that are adjacent, then 
+the police are called. This question is slightly harder than a similar problem since the houses are circular in this one. The first house and the
+last house count as adjacent so those two will trigger the alarm too. The key to getting past this is applying the algorithm for a regular street
+of houses twice, once ignoring the first house and once ignoring the last house. This allows us to not worry about keeping track of which houses
+we have robbed. The algorithm for a regular street is as follows: Keep two running loot trackers, one for the current max amount of money and 
+one for the next most amount of money that can be stolen so far. Every time we look at a new house, determine if there is more money available to
+be stolen by either ignoring the current house or robbing the current house. This will look clearer in figure 1. Also got some practice using the 
+ternary operator in this problem. This allows a user to evaluate a condition and set a return value based on it's outcome. For example: 
+A > B ? A : B will return which of the two numbers is greater. If A > B is true, than A is larger, the statement is true, and the expression before
+the colon is returned. If A > B is false, than B is greater, and the expression after the colon is returned. 
+
+Results:
+
+Runtime: 4 ms, faster than 59.00% of C++ online submissions for House Robber II.
+Memory Usage: 8.4 MB, less than 100.00% of C++ online submissions for House Robber II.
+
+I can't help but wonder if there is a faster way to run this algorithm. Since we are looking through the entire dataset twice, it is an O(2N) solution.
+There could be a way to run it through in only one pass. Looking at the discussion however, most solutions seem to use one pass. It may just be that
+this solution is good enough and coding a one-pass solution will be much lengthier.
