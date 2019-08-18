@@ -1,0 +1,17 @@
+For this problem, we have to find the total number of paths the robot can reach the end if it's only allowed to travel right and down. The robot 
+begins at the top left and the end is the bottom right. We are given the size of the rectangle through its width and height AKA row length and 
+column length. The first time I attempted this problem, I used memoization to keep track of how many possible routes there are to reach each
+square, as shown in figure 1. Since the only ways to reach a position is from it's left and above, you can add up the values of those two squares
+and find the total number of ways to reach the current square. Initially, my memoization took up MxN space, as shown in figure 1 again. However, 
+the amount of space can be optimized to only need N, or the length of a row. We only have to keep track of 2 values to know the value of the current
+space, the space above it and the space to the left of it. We can just memoize one row and update it when we move on to the next. That way, we have
+the value above it already stored and the value before it already previously calculated. This is shown in figure 2.
+
+Results:
+
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Unique Paths.
+Memory Usage: 8.2 MB, less than 92.19% of C++ online submissions for Unique Paths.
+
+Pretty sure the Runtime is just glitching out again on Leetcode due to rounding errors. The memory usage is good too. You can probably improve memory
+very slightly by taking out the first value of the memoized row and just remembering that it's equal to 1, since the first column values are all 1.
+Again, dynamic programming and memoization are very important so getting more practice with them is good!
