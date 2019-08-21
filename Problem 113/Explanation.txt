@@ -1,0 +1,17 @@
+In this problem, we have a Binary Tree and a target sum. We have to find all paths that go from root to leaf and have the same sum as the target.
+I decided to take a non-recursive approach because there has to be a lot of information that we have to keep track of, such as the current path 
+and visited/non-visited nodes. A good way to find all paths to each root would be an extensive search, and we would prefer a breadth first search
+(BFS) in this case so we can look at one path to a leaf from the root at a time. Usually, a stack is used to simulate a BFS so that data structure
+was used. A stack allows us to keep track of nodes that we haven't visited yet as well as helps us look at all paths one at a time. The code is 
+commented but I think an image representation is really helpful for this problem/showing the algorithm so Figure 1. 
+
+Results:
+
+Runtime: 12 ms, faster than 85.99% of C++ online submissions for Path Sum II.
+Memory Usage: 18.8 MB, less than 100.00% of C++ online submissions for Path Sum II.
+
+By using the same vector to keep track of paths through the tree I think we really saved on memory. Many people would just create a new vector
+of ints once they found a working path but that's not necessary. The runtime is decent as well, I feel like it could be improved upon by using 
+pruning, where we check the sum of the path every time we add a node. If the sum exceeds the target sum, then we can immediately terminate looking
+at the full path because it's already over the target. However, this only works in test cases with only positive numbers, and this problem does have
+negative number test sets. 
